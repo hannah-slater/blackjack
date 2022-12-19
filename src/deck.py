@@ -1,4 +1,5 @@
 from src.card import Card
+import random
 
 class Deck:
     def __init__(self):
@@ -18,6 +19,8 @@ class Deck:
             print(c.getCard())
             
     #def shuffle(self):
-        
-    #def draw(self):
+
+    #returns and removes card from end of list
+    def draw(self):
+        return self.cards.pop()
         
