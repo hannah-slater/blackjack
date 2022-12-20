@@ -10,17 +10,17 @@ def play():
     print("Welcome To Blackjack!\nYour objective is to get as close to 21 as you can without going over.\nGood Luck!\n")
 
     playerAmnt = 0
+    #loops until user inputs a valid number
     while playerAmnt not in range(1,6):
         playerAmnt = int(input("Please enter the number of players (up to 5): "))
+        if playerAmnt not in range(1,6):
+            print("Invalid input, please try again.")
     
-
     players = []
     for p in range(1, playerAmnt + 1):
-        #check players name is valid (less than 25 char)
-        name = input("Please input player's name: ")
+        name = str(input("Please input player's name: "))
         players.append(Player(name.upper()))
-        
-            
+         
     #Dealer draw:
     dealer = Player("DEALER")
     dealer.createHand(deck)
