@@ -37,11 +37,11 @@ def play():
         while p.getValue() < 21:
             i = input("Hit or Stand?\n")
             #if Hit player recieves another card and value is updated
-            if i.lower() == "hit":
+            if i.lower() == "hit" or i.lower() == "h":
                 p.hit(deck)
                 print("\n"+p.getName()+"'s HAND\n"+p.getHand().displayCards())
                 print("Value of Hand:",p.getValue(),"\n")
-            elif i.lower() == "stand":
+            elif i.lower() == "stand" or i.lower() == "s":
                 break
         if p.getValue() > 21:
             print("BUST\n")
