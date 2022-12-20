@@ -111,11 +111,14 @@ def play():
         #Removes any players with no remaining money
         a = 0
         for i in pCopy:
+            b = 0
+            for p in players:
+                b = p
             if i == 0:
-                players.pop(a)
+                players.remove(b)
             a += 1
 
-        if players is False:
+        if len(players) == 0:
             print("All players out")
             playing = False
         
