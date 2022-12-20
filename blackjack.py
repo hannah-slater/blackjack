@@ -15,16 +15,16 @@ def play():
     dealerHand.addCard(deck.draw())
     dealerValue = dealerHand.getValue()
     print(dealerHand.displayCards())
-    print("Value of dealer hand:",dealerValue)
+    print("Value of dealer hand:",dealerValue,"\n")
 
     #Player draw:
     playerHand.addCard(deck.draw())
     playerHand.addCard(deck.draw())
     playerValue = playerHand.getValue()
     print(playerHand.displayCards())
-    print("Value of Hand:",playerValue)
+    print("Value of Your Hand:",playerValue,"\n")
     
-    #Player given options 'Hit' or 'Stick' (buttons)
+    #Player given options 'Hit' or 'Stand'
     while playerValue < 21:
         i = input("Hit or Stand?\n")
         #if Hit player recieves another card and value is updated
