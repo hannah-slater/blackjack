@@ -44,4 +44,3 @@ class Player:
 
     def clearHand(self):
         self.hand.clear()
-        
