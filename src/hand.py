@@ -5,14 +5,14 @@ class Hand:
     def __init__(self):
         self.cards = []
 
-    #adds a card object to the hand
+    #Adds a card object to the hand
     def addCard(self, deck, n):
         for i in range (1, n+1):
             self.cards.append(deck.draw())
         self.calculateValue()
 
 
-    #returns a string containg the cards present in the hand
+    #Returns a string containing the cards present in the hand
     def displayCards(self):
         string = ""
         last = 0
@@ -23,36 +23,35 @@ class Hand:
                 string += "\n"
         return string
 
-    #calculates the value of the hand
+    #Calculates the value of the hand
     def calculateValue(self):
         value = 0
-        #holds the value of the amount of aces in the hand
-        ace = 0
+        aces = 0
         
         for card in self.cards:
             v = card.getValue()
             if v == 1:
-                ace += 1
+                aces += 1
             else:
                 value += v
         
-        #evaluates the value of aces if there are one or more in the hand
-        if ace != 0:
-            while ace >= 2:
+        #Evaluates the value of aces if there are one or more in the hand
+        if aces != 0:
+            while aces >= 2:
                 value += 1
-                ace -= 1
+                aces -= 1
 
-            if ace == 1:
+            if aces == 1:
                 if (value + 11) <= 21:
                     value += 11
                 else:
                     value += 1
         self.handValue = value
 
-    #returns the value of the hand
+    #Returns the value of the hand
     def getValue(self):
         return self.handValue
 
-    #clears hand
+    #Clears hand for beginning a new round
     def clear(self):
         self.cards = []

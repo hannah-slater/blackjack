@@ -9,7 +9,6 @@ class Card:
         c = "{} of {}".format(self.name,self.suit)
         return c
 
-    #Returns the value of the card to calculate scores
+    #Returns the value of the card
     def getValue(self):
         return self.value
-        

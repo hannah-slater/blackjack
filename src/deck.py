@@ -17,7 +17,8 @@ class Deck:
     def show(self):
         for c in self.cards:
             print(c.getCard())
-            
+
+    #Shuffles the deck into a random order      
     def shuffle(self):
         shuffledCards = []
         cards = [*range(1,53)]
@@ -28,7 +29,7 @@ class Deck:
                 cards.remove(r)
         self.cards = shuffledCards
 
-    #returns and removes card from end of list
+    #Returns and removes a card from the end of the list
     def draw(self):
         return self.cards.pop()
         

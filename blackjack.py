@@ -5,16 +5,16 @@ from src.player import Player
 
 def play():
     playing = True
-    round = 0
-    print("Welcome To Blackjack!\n")
-    print("Your objective is to get as close to 21 as you can without going over.\n")
+    round = 1
+    print("Welcome To Blackjack!")
+    print("Your objective is to get as close to 21 as you can without going over.")
     print("Your balance starts at 100 per player.")
     print("Good Luck!\n")
 
     dealer = Player("DEALER")
 
     playerAmnt = 0
-    #loops until user inputs a valid number
+    #Allows players to initiate up to 5 players
     while playerAmnt not in range(1,6):
         try:
             playerAmnt = int(input("Please enter the number of players (up to 5): "))
@@ -33,14 +33,14 @@ def play():
             print("Invalid input, please input a name.")
 
     while(playing):
+        print("\nROUND",round)
+
         deck = Deck()
         deck.shuffle()
 
-        #Dealer draw:
         dealer.clearHand()
         dealer.createHand(deck)
 
-        #Player draw:
         for p in players:
             setWager = False
             while setWager is False:
@@ -50,37 +50,34 @@ def play():
                         p.setWager(wager)
                         setWager = True
                     else:
-                        print("Wager is invalid, your balance: "+str(p.getMoney()))
+                        print("Wager is invalid, your balance: {}".format(p.getMoney()))
                 except:
                     print("Invalid input, please input an integer number.")
 
             p.createHand(deck)
-            print(str(p.getName())+"'s HAND\n"+str(p.getHand().displayCards()))
-            print("Value of Hand:",p.getValue(),"\n")
+            display(p)
         
             #Player given options 'Hit' or 'Stand'
             while p.getValue() < 21:
-                i = input("Hit or Stand?\n")
-                #if Hit player recieves another card and value is updated
+                i = input("Hit or Stand? h/s\n")
+                #If Hit player recieves another card and value is updated
                 if i.lower() == "hit" or i.lower() == "h":
                     p.hit(deck)
-                    print("\n"+str(p.getName())+"'s HAND\n"+str(p.getHand().displayCards()))
-                    print("Value of Hand:",p.getValue(),"\n")
+                    display(p)
                 elif i.lower() == "stand" or i.lower() == "s":
                     break
             if p.getValue() > 21:
                 print("BUST\n")
         
-        #dealer turn
-        print("DEALERS HAND\n"+dealer.getHand().displayCards())
-        print("Value of dealer's hand:",dealer.getValue(),"\n")
+        #Dealer turn
+        display(dealer)
+        
         if bool(players):
             while dealer.getValue() < 17:
                 dealer.hit(deck)
-                print("\nDEALERS HAND\n"+dealer.getHand().displayCards())
-                print("Value of dealer hand:",dealer.getValue(),"\n")
+                display(dealer)
 
-        #check if players won, drew or lost
+        #Check players outcome
         dVal = dealer.getValue()
         pCopy = []
         for p in players:
@@ -100,7 +97,7 @@ def play():
             elif pVal < dVal:
                 print(pName+": LOSE")
                 
-            print("Your balance is now: "+str(p.getMoney())+"\n")
+            print("Your balance is now: {}".format(p.getMoney()))
         
             if p.getMoney() == 0:
                 pCopy.append(0)
@@ -111,6 +108,7 @@ def play():
                 pCopy.append(1)
                 p.clearHand()
         
+        #Removes any players with no remaining money
         a = 0
         for i in pCopy:
             if i == 0:
@@ -127,7 +125,6 @@ def play():
                 try:
                     playAgain = input("\nPlay again? y/n\n")
                     if playAgain.lower() == "y":
-                        print("ROUND",round)
                         round += 1
                         noinput = False
                     else:
@@ -135,6 +132,11 @@ def play():
                         noinput = False
                 except:
                     print("Invalid input, please input \"y\" or \"n\"")
+
+#Displays a players hand (inc dealer)
+def display(p):
+    print("{}'s HAND\n{}".format(p.getName(), p.getHand().displayCards()))
+    print("Value of Hand: {}\n".format(p.getValue()))
 
 if __name__ == '__main__':
     play()

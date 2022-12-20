@@ -9,38 +9,45 @@ class Player:
         self.money = 100
         self.wager = 0
 
+    #Creates a hand for player given the deck
     def createHand(self, deck):
         self.hand.addCard(deck, 2)
         self.value = self.hand.getValue()
 
+    #Adds a card to the hand of the player
     def hit(self, deck):
         self.hand.addCard(deck, 1)
         self.value = self.hand.getValue()
 
+    #Returns the value of the players hand
     def getValue(self):
         return self.value
 
+    #Returns name of player
     def getName(self):
         return self.name
 
+    #Returns players hand
     def getHand(self):
         return self.hand
 
+    #Returns money/balance of the player
     def getMoney(self):
         return self.money
 
-    def getWager(self):
-        return self.wager
-
+    #Sets the players wager for the current round
     def setWager(self, w):
         self.wager = w
         self.money -= w
 
+    #Executes if the player draws with the dealer
     def draw(self):
         self.money += self.wager
 
+    #Adds winnings if player wins against the dealer
     def addWinnings(self):
         self.money += 2 * self.wager
 
+    #Clears hand between rounds
     def clearHand(self):
         self.hand.clear()
