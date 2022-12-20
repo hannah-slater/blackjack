@@ -4,7 +4,7 @@ from src.hand import Hand
 
 def play():
     deck = Deck()
-    #deck.shuffle()
+    deck.shuffle()
 
     #Hands
     playerHand = Hand()

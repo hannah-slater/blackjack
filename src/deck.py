@@ -18,7 +18,15 @@ class Deck:
         for c in self.cards:
             print(c.getCard())
             
-    #def shuffle(self):
+    def shuffle(self):
+        shuffledCards = []
+        cards = [*range(1,53)]
+        for i in range(1,53):
+            r = random.randint(1,53)
+            if r in cards:
+                shuffledCards.append(self.cards[r-1])
+                cards.remove(r)
+        self.cards = shuffledCards
 
     #returns and removes card from end of list
     def draw(self):
