@@ -1,13 +1,16 @@
 from src.card import Card
+from src.deck import Deck
 
 class Hand:
     def __init__(self):
         self.cards = []
 
     #adds a card object to the hand
-    def addCard(self, card):
-        self.cards.append(card)
+    def addCard(self, deck, n):
+        for i in range (1, n+1):
+            self.cards.append(deck.draw())
         self.calculateValue()
+
 
     #returns a string containg the cards present in the hand
     def displayCards(self):
