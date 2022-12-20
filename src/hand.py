@@ -12,8 +12,12 @@ class Hand:
     #returns a string containg the cards present in the hand
     def displayCards(self):
         string = ""
+        last = 0
         for card in self.cards:
-            string += card.getCard() + "\n"
+            string += card.getCard()
+            last += 1
+            if last != len(self.cards):
+                string += "\n"
         return string
 
     #calculates the value of the hand

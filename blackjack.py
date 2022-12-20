@@ -14,14 +14,14 @@ def play():
     dealerHand.addCard(deck.draw())
     dealerHand.addCard(deck.draw())
     dealerValue = dealerHand.getValue()
-    print(dealerHand.displayCards())
+    print("DEALERS HAND\n"+dealerHand.displayCards())
     print("Value of dealer hand:",dealerValue,"\n")
 
     #Player draw:
     playerHand.addCard(deck.draw())
     playerHand.addCard(deck.draw())
     playerValue = playerHand.getValue()
-    print(playerHand.displayCards())
+    print("YOUR HAND\n"+playerHand.displayCards())
     print("Value of Your Hand:",playerValue,"\n")
     
     #Player given options 'Hit' or 'Stand'
@@ -31,8 +31,8 @@ def play():
         if i.lower() == "hit":
             playerHand.addCard(deck.draw())
             playerValue = playerHand.getValue()
-            print(playerHand.displayCards())
-            print("Value of Hand:",playerValue)
+            print("\nYOUR HAND\n"+playerHand.displayCards())
+            print("Value of Hand:",playerValue,"\n")
         elif i.lower() == "stand":
             break
 
@@ -42,16 +42,16 @@ def play():
         while dealerValue < playerValue:
             dealerHand.addCard(deck.draw())
             dealerValue = dealerHand.getValue()
-            print(dealerHand.displayCards())
-            print("Value of dealer hand:",dealerValue)
+            print("\nDEALERS HAND\n"+dealerHand.displayCards())
+            print("Value of dealer hand:",dealerValue,"\n")
         if playerValue > dealerValue or dealerValue > 21:
-            print("WIN")
+            print("\nWIN")
         elif playerValue == dealerValue:
-            print("DRAW")
+            print("\nDRAW")
         elif dealerValue > playerValue:
-            print("LOSE")
+            print("\nLOSE")
     else:
-        print("BUST")
+        print("\nBUST")
 
 
 
