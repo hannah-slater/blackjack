@@ -6,6 +6,8 @@ class Player:
         self.name = name
         self.hand = Hand()
         self.value = 0
+        self.money = 100
+        self.wager = 0
 
     def createHand(self, deck):
         self.hand.addCard(deck, 2)
@@ -23,4 +25,23 @@ class Player:
 
     def getHand(self):
         return self.hand
+
+    def getMoney(self):
+        return self.money
+
+    def getWager(self):
+        return self.wager
+
+    def setWager(self, w):
+        self.wager = w
+        self.money -= w
+
+    def draw(self):
+        self.money += self.wager
+
+    def addWinnings(self):
+        self.money += 2 * self.wager
+
+    def clearHand(self):
+        self.hand.clear()
         

@@ -52,3 +52,7 @@ class Hand:
     #returns the value of the hand
     def getValue(self):
         return self.handValue
+
+    #clears hand
+    def clear(self):
+        self.cards = []
