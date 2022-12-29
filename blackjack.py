@@ -120,29 +120,25 @@ def play():
             dealer.playHand(deck, ruleFor17, highest)
 
         #Check players outcome
-        pCopy = []
+        pRem = []
         for p in players:
             print(str(p.getName()) + ": " + str(dealer.evaluate(p)))
             print("Your balance is now: {}".format(p.getMoney()))
         
             if p.getMoney() == 0:
-                pCopy.append(0)
+                pRem.append(p)
                 print("Game Over")
                 if len(players) == 1:
                     playing = False
             else:
-                pCopy.append(1)
                 p.clearHand()
         
         #Removes any players with no remaining money
-        a = 0
-        for i in pCopy:
-            b = 0
-            for p in players:
-                b = p
-            if i == 0:
-                players.remove(b)
-            a += 1
+        for i in pRem:
+            try:
+                players.remove(i)
+            except:
+                pass
 
         if len(players) == 0:
             print("All players out")
