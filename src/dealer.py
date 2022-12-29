@@ -17,7 +17,7 @@ class Dealer(Player):
 
     #Plays dealers hand according to the rules set
     def playHand(self, deck, rule, h):
-        while self.value < h and self.final == False:
+        while self.value < h and self.value <= 17 and self.final == False:
             cards = self.hand.getCards()
             values = [c.getValue() for c in cards]
             if 1 in values and self.value == 17:
