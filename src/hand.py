@@ -46,7 +46,8 @@ class Hand:
                     value += 11
                 else:
                     value += 1
-        if value > 21:
+        print("VVVVVVV "+str(value))
+        if value >= 22:
             self.valid = False
         self.handValue = value
 

@@ -37,12 +37,12 @@ class Dealer(Player):
 
     def evaluate(self, player):
         v = player.getValue()
-        if player.getHand().getValid() == False:
+        if v > 21:
             return("BUST")
         elif player.fiveCards() == True:
             player.addWinnings()
             return("WIN")
-        elif self.hand.getValid() == False:
+        elif self.value > 21:
             player.addWinnings()
             return("WIN")
         elif v > self.value:
