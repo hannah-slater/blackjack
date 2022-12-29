@@ -45,7 +45,7 @@ def play():
     players = []
     for p in range(1, playerAmnt + 1):
         try:
-            name = str(input("Please input players name: "))
+            name = str(input("Please input player {}'s name: ".format(p)))
             players.append(Player(name.upper()))
         except:
             print("Invalid input, please input a name.")
