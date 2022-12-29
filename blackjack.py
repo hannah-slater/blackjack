@@ -2,6 +2,7 @@ from src.deck import Deck
 from src.card import Card
 from src.hand import Hand
 from src.player import Player
+from src.dealer import Dealer
 
 def play():
     playing = True
@@ -11,7 +12,24 @@ def play():
     print("Your balance starts at 100 per player.")
     print("Good Luck!\n")
 
-    dealer = Player("DEALER")
+    dealer = Dealer("DEALER")
+
+    rulesSet = False
+    ruleFor17 = True
+    print("Please set the rules for your table:")
+    while rulesSet == False:
+        try:
+            rule = input("Should the dealer hit or stand when dealt a soft 17? (h/s)\n")
+            if rule.lower() == "hit" or rule.lower() == "h":
+                ruleFor17 = True
+                rulesSet = True
+            elif rule.lower() == "stand" or rule.lower() == "s":
+                ruleFor17 = False
+                rulesSet = True
+            else:
+                print("Please enter \"h\" or \"s\"")
+        except:
+            print("Invalid input, please try again.")
 
     playerAmnt = 0
     #Allows players to initiate up to 5 players
@@ -41,6 +59,7 @@ def play():
         dealer.clearHand()
         dealer.createHand(deck)
 
+        highest = 0
         for p in players:
             setWager = False
             while setWager is False:
@@ -58,6 +77,7 @@ def play():
             display(p)
         
             #Player given options 'Hit' or 'Stand'
+            #if player has 5 cards and is not bust, they win
             while p.getValue() < 21:
                 i = input("Hit or Stand? h/s\n")
                 #If Hit player recieves another card and value is updated
@@ -66,37 +86,25 @@ def play():
                     display(p)
                 elif i.lower() == "stand" or i.lower() == "s":
                     break
+                else:
+                    print("Please enter \"h\" or \"s\"")
             if p.getValue() > 21:
                 print("BUST\n")
+            else:
+                if p.getValue() > highest:
+                    highest = p.getValue()
         
         #Dealer turn
         display(dealer)
         
+        #dealer plays hand
         if bool(players):
-            while dealer.getValue() < 17:
-                dealer.hit(deck)
-                display(dealer)
+            dealer.playHand(deck, ruleFor17, highest)
 
         #Check players outcome
-        dVal = dealer.getValue()
         pCopy = []
         for p in players:
-            pVal = p.getValue()
-            pName = p.getName()
-            if pVal > 21:
-                print(pName+": BUST")
-            elif dVal > 21:
-                print(pName+": WIN")
-                p.addWinnings()
-            elif pVal > dVal:
-                print(pName+": WIN")
-                p.addWinnings()
-            elif pVal == dVal:
-                print(pName+": DRAW")
-                p.draw()
-            elif pVal < dVal:
-                print(pName+": LOSE")
-                
+            print(str(p.getName()) + ": " + str(dealer.evaluate(p)))
             print("Your balance is now: {}".format(p.getMoney()))
         
             if p.getMoney() == 0:
@@ -130,9 +138,11 @@ def play():
                     if playAgain.lower() == "y":
                         round += 1
                         noinput = False
-                    else:
+                    elif playAgain.lower() == "n":
                         playing = False
                         noinput = False
+                    else:
+                        print("Please enter \"y\" or \"n\".")
                 except:
                     print("Invalid input, please input \"y\" or \"n\"")
 

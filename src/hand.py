@@ -11,7 +11,6 @@ class Hand:
             self.cards.append(deck.draw())
         self.calculateValue()
 
-
     #Returns a string containing the cards present in the hand
     def displayCards(self):
         string = ""
@@ -51,6 +50,14 @@ class Hand:
     #Returns the value of the hand
     def getValue(self):
         return self.handValue
+
+    #Returns card objects
+    def getCards(self):
+        return self.cards
+
+    #Returns amount of cards in hand
+    def amountCards(self):
+        return len(self.cards)
 
     #Clears hand for beginning a new round
     def clear(self):

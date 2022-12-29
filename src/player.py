@@ -13,7 +13,7 @@ class Player:
     def createHand(self, deck):
         self.hand.addCard(deck, 2)
         self.value = self.hand.getValue()
-
+  
     #Adds a card to the hand of the player
     def hit(self, deck):
         self.hand.addCard(deck, 1)
