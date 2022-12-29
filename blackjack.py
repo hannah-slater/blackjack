@@ -14,6 +14,7 @@ def play():
 
     dealer = Dealer("DEALER")
 
+    #Gets players to select the rules they want to play with
     ruleOneSet = False
     ruleTwoSet = False
     ruleFor17 = True
@@ -75,6 +76,7 @@ def play():
 
         highest = 0
         for p in players:
+            #Player sets wager
             setWager = False
             while setWager is False:
                 try:

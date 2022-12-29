@@ -71,6 +71,7 @@ class Hand:
     def clear(self):
         self.cards = []
 
+    #Allows test functions to add specific cards to hand
     def addCardTest(self, card):
         self.cards.append(card)
         self.calculateValue()

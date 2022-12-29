@@ -31,10 +31,12 @@ class Dealer(Player):
                 self.hit(deck)
                 self.display()
 
+    #Displays the cards and value of the dealer's hand
     def display(self):
         print("DEALER's HAND\n{}".format(self.hand.displayCards()))
         print("Value of Hand: {}\n".format(self.value))  
 
+    #Evaluates a given player's outcome
     def evaluate(self, player):
         v = player.getValue()
         if v > 21:
