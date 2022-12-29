@@ -48,10 +48,17 @@ class HandTestCase(unittest.TestCase):
         a = self.hand.getValid()
         self.assertEqual(a, True)
 
+    def test_edgeValid(self):
+        self.hand.addCardTest(Card("Suit", "King", 10))
+        self.hand.addCardTest(Card("Suit", "5", 5))
+        self.hand.addCardTest(Card("Suit", "6", 6))
+        a = self.hand.getValid()
+        self.assertEqual(a, True)
+
     def test_notValid(self):
         self.hand.addCardTest(Card("Suit", "9", 9))
         self.hand.addCardTest(Card("Suit", "King", 10))
-        self.hand.addCardTest(Card("Suit", "Queen", 10))
+        self.hand.addCardTest(Card("Suit", "3", 3))
         a = self.hand.getValid()
         self.assertEqual(a, False)
 
