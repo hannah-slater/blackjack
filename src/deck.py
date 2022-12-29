@@ -14,9 +14,6 @@ class Deck:
                 self.cards.append(Card(suit,card,card))
             for pictureCard in ["Jack","Queen","King"]:
                 self.cards.append(Card(suit, pictureCard, 10))
-    def show(self):
-        for c in self.cards:
-            print(c.getCard())
 
     #Shuffles the deck into a random order      
     def shuffle(self):
