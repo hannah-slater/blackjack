@@ -62,3 +62,7 @@ class Hand:
     #Clears hand for beginning a new round
     def clear(self):
         self.cards = []
+
+    def addCardTest(self, card):
+        self.cards.append(card)
+        self.calculateValue()
