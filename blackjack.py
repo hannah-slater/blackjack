@@ -102,12 +102,13 @@ def play():
                     break
                 else:
                     print("Please enter \"h\" or \"s\"")
+            
+            if p.getHand().getValid() == False:
+                print("BUST\n")
             #If players hand contains 5 cards without going over 21, they win
-            if p.getHand().amountCards() == 5 and fiveCardWin == True:
+            elif p.getHand().amountCards() == 5 and fiveCardWin == True:
                 p.setFiveCards()
                 print("FIVE CARD WIN")
-            if p.getValid() == False:
-                print("BUST\n")
             else:
                 if p.getValue() > highest:
                     highest = p.getValue()
