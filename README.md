@@ -7,6 +7,9 @@ Type **'python3 blackjack.py'** in the command line
 
 Python version 3.9.7
 
+## Running unit test
+Type **python3 -m unittest discover test** in command line
+
 ## Assumptions made
 - The house would not hit their own hand if they are winning once players have played through
 - A player cannot wager more money then they have available
