@@ -106,7 +106,7 @@ def play():
             if p.getHand().amountCards() == 5 and fiveCardWin == True:
                 p.setFiveCards()
                 print("FIVE CARD WIN")
-            if p.getValue() > 21:
+            if p.getValid() == False:
                 print("BUST\n")
             else:
                 if p.getValue() > highest:

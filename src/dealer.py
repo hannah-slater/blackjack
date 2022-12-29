@@ -24,23 +24,25 @@ class Dealer(Player):
                 print("Soft 17, rule being applied")
                 if rule:
                     self.hit(deck)
-                    print("DEALER's HAND\n{}".format(self.hand.displayCards()))
-                    print("Value of Hand: {}\n".format(self.value))  
+                    self.display()
                 elif rule == False:
                     self.final = True
             else:
                 self.hit(deck)
-                print("DEALER's HAND\n{}".format(self.hand.displayCards()))
-                print("Value of Hand: {}\n".format(self.value))  
+                self.display()
+
+    def display(self):
+        print("DEALER's HAND\n{}".format(self.hand.displayCards()))
+        print("Value of Hand: {}\n".format(self.value))  
 
     def evaluate(self, player):
         v = player.getValue()
-        if v > 21:
+        if player.getValid() == False:
             return("BUST")
         elif player.fiveCards() == True:
             player.addWinnings()
             return("WIN")
-        elif self.value > 21:
+        elif self.getValid() == False:
             player.addWinnings()
             return("WIN")
         elif v > self.value:

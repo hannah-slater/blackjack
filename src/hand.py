@@ -4,6 +4,7 @@ from src.deck import Deck
 class Hand:
     def __init__(self):
         self.cards = []
+        self.valid = True
 
     #Adds a card object to the hand
     def addCard(self, deck, n):
@@ -45,6 +46,8 @@ class Hand:
                     value += 11
                 else:
                     value += 1
+        if value > 21:
+            self.valid = False
         self.handValue = value
 
     #Returns the value of the hand
@@ -54,6 +57,10 @@ class Hand:
     #Returns card objects
     def getCards(self):
         return self.cards
+    
+    #Returns valid status
+    def getValid(self):
+        return self.valid
 
     #Returns amount of cards in hand
     def amountCards(self):
