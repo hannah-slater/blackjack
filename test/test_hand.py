@@ -43,5 +43,17 @@ class HandTestCase(unittest.TestCase):
         a = self.hand.getValue()
         self.assertEqual(a, 21)
 
+    def test_valid(self):
+        self.hand.addCardTest(Card("Suit", "9", 9))
+        a = self.hand.getValid()
+        self.assertEqual(a, True)
+
+    def test_notValid(self):
+        self.hand.addCardTest(Card("Suit", "9", 9))
+        self.hand.addCardTest(Card("Suit", "King", 10))
+        self.hand.addCardTest(Card("Suit", "Queen", 10))
+        a = self.hand.getValid()
+        self.assertEqual(a, False)
+
 if __name__ == '__main__':
     unittest.main()
