@@ -14,20 +14,34 @@ def play():
 
     dealer = Dealer("DEALER")
 
-    rulesSet = False
+    ruleOneSet = False
+    ruleTwoSet = False
     ruleFor17 = True
     print("Please set the rules for your table:")
-    while rulesSet == False:
+    while ruleOneSet == False:
         try:
             rule = input("Should the dealer hit or stand when dealt a soft 17? (h/s)\n")
             if rule.lower() == "hit" or rule.lower() == "h":
                 ruleFor17 = True
-                rulesSet = True
+                ruleOneSet = True
             elif rule.lower() == "stand" or rule.lower() == "s":
                 ruleFor17 = False
-                rulesSet = True
+                ruleOneSet = True
             else:
                 print("Please enter \"h\" or \"s\"")
+        except:
+            print("Invalid input, please try again.")
+    while ruleTwoSet == False:
+        try:
+            rule = input("Should the player win if they are dealt 5 cards without going bust? (y/n)\n")
+            if rule.lower() == "yes" or rule.lower() == "y":
+                fiveCardWin = True
+                ruleTwoSet = True
+            elif rule.lower() == "no" or rule.lower() == "n":
+                fiveCardWin = False
+                ruleTwoSet = True
+            else:
+                print("Please enter \"y\" or \"n\"")
         except:
             print("Invalid input, please try again.")
 
@@ -88,6 +102,10 @@ def play():
                     break
                 else:
                     print("Please enter \"h\" or \"s\"")
+            #If players hand contains 5 cards without going over 21, they win
+            if p.getHand().amountCards() == 5 and fiveCardWin == True:
+                p.setFiveCards()
+                print("FIVE CARD WIN")
             if p.getValue() > 21:
                 print("BUST\n")
             else:

@@ -8,6 +8,7 @@ class Player:
         self.value = 0
         self.money = 100
         self.wager = 0
+        self.five = False
 
     #Creates a hand for player given the deck
     def createHand(self, deck):
@@ -39,6 +40,14 @@ class Player:
     def setWager(self, w):
         self.wager = w
         self.money -= w
+    
+    #Sets the winning variable for if a player has 5 cards to true
+    def setFiveCards(self):
+        self.five = True
+    
+    #Returns the variable for if a player has five cards
+    def fiveCards(self):
+        return self.five
 
     #Executes if the player draws with the dealer
     def draw(self):

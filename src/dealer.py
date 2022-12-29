@@ -37,6 +37,9 @@ class Dealer(Player):
         v = player.getValue()
         if v > 21:
             return("BUST")
+        elif player.fiveCards() == True:
+            player.addWinnings()
+            return("WIN")
         elif self.value > 21:
             player.addWinnings()
             return("WIN")
