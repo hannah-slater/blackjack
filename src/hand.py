@@ -26,30 +26,32 @@ class Hand:
     #Calculates the value of the hand
     def calculateValue(self):
         value = 0
-        aces = 0
         
+        for card in self.cards:
+            v = card.getValue()
+            value += v
+        
+        #Evaluates the value of aces if there are one or more in the hand
+        a = self.checkAces()
+        if a != 0:
+            while a >= 2:
+                a -= 1
+
+            if a == 1:
+                if (value + 10) <= 21:
+                    value += 10
+        
+        if value >= 22:
+            self.valid = False
+        self.handValue = value
+
+    def checkAces(self):
+        aces = 0
         for card in self.cards:
             v = card.getValue()
             if v == 1:
                 aces += 1
-            else:
-                value += v
-        
-        #Evaluates the value of aces if there are one or more in the hand
-        if aces != 0:
-            while aces >= 2:
-                value += 1
-                aces -= 1
-
-            if aces == 1:
-                if (value + 11) <= 21:
-                    value += 11
-                else:
-                    value += 1
-        print("VVVVVVV "+str(value))
-        if value >= 22:
-            self.valid = False
-        self.handValue = value
+        return aces
 
     #Returns the value of the hand
     def getValue(self):

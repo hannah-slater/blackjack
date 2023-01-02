@@ -125,7 +125,7 @@ def play():
         #Check players outcome
         pRem = []
         for p in players:
-            print(str(p.getName()) + ": " + str(dealer.evaluate(p)))
+            print("{}: {}".format(str(p.getName()), str(dealer.evaluate(p))))
             print("Your balance is now: {}".format(p.getMoney()))
         
             if p.getMoney() == 0:
