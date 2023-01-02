@@ -74,7 +74,6 @@ def play():
         dealer.clearHand()
         dealer.createHand(deck)
 
-        highest = 0
         for p in players:
             #Player sets wager
             setWager = False
@@ -111,16 +110,13 @@ def play():
             elif p.getHand().amountCards() == 5 and fiveCardWin == True:
                 p.setFiveCards()
                 print("FIVE CARD WIN")
-            else:
-                if p.getValue() > highest:
-                    highest = p.getValue()
         
         #Dealer turn
         display(dealer)
         
         #dealer plays hand
         if bool(players):
-            dealer.playHand(deck, ruleFor17, highest)
+            dealer.playHand(deck, ruleFor17)
 
         #Check players outcome
         pRem = []
