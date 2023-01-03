@@ -80,7 +80,7 @@ def play():
             while setWager is False:
                 try:
                     wager = int(input("{} how much would you like to wager?\n".format(p.getName())))
-                    if wager <= p.getMoney():
+                    if wager <= p.getMoney() and wager > 0:
                         p.setWager(wager)
                         setWager = True
                     else:
